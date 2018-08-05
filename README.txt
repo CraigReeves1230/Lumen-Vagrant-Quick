@@ -1,4 +1,4 @@
-This was tested and designed using Lumen 5.5.
+This was tested and designed using Lumen 5.6.
 
 The address you will put in your address bar is simply localhost.
 
