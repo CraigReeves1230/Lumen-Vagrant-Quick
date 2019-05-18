@@ -66,6 +66,7 @@ sudo rm /etc/nginx/sites-available/default
 sudo rm /etc/nginx/nginx.conf
 sudo ln -s /vagrant/nginx-default /etc/nginx/sites-available/default
 sudo ln -s /vagrant/nginx-config /etc/nginx/nginx.conf
+sudo fuser -k 80/tcp
 sudo service nginx restart
 sudo service nginx reload
 sudo cp preset-env .env
