@@ -32,6 +32,9 @@ sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
 sudo apt install -y php7.3-fpm php7.3-mbstring php7.3-xml php7.3-mysql php7.3-fpm php7.3-common php7.3-gd php7.3-json php7.3-cli php7.3-curl php-zmq php-apcu php-memcached \
 php-solr php-mongodb php7.3-bcmath php7.3-pgsql unzip php7.3-dev php7.3- php7.3-opcache php-zmq php-stomp php-imagick php7.3-zip php-pear php7.3-dev php-mongodb
+sudo systemctl start php7.3-fpm
+sudo update-alternatives --set php /usr/bin/php7.3
+sudo systemctl restart php7.3-fpm
 
 echo "-- Installing BeanstalkD --"
 sudo apt-get -y install beanstalkd
@@ -48,6 +51,18 @@ sudo ln -s /etc/php/7.3/mods-available/redis.ini /etc/php/7.3/fpm/conf.d/redis.i
 sudo ln -s /etc/php/7.3/mods-available/redis.ini /etc/php/7.3/cli/conf.d/redis.ini
 sudo apt -y install php7.3-bcmath
 sudo ./configure --enable-redis-igbinary
+sudo service php7.3-fpm restart
+
+echo "-- Install XDebug --"
+cd /
+pecl install xdebug
+sudo echo "zend_extension=/usr/lib/php/20180731/xdebug.so" >> /etc/php/7.3/fpm/php.ini
+sudo echo "xdebug.remote_enable = 1" >> /etc/php/7.3/fpm/php.ini
+sudo echo "xdebug.remote_port = 9000" >> /etc/php/7.3/fpm/php.ini
+sudo echo "xdebug.remote_port = PHPSTORM" >> /etc/php/7.3/fpm/php.ini
+sudo echo "xdebug.show_error_trace = 1" >> /etc/php/7.3/fpm/php.ini
+sudo echo "xdebug.remote_autostart = 0" >> /etc/php/7.3/fpm/php.ini
+sudo echo "xdebug.remote_connect_back = 1" >> /etc/php/7.3/fpm/php.ini
 sudo service php7.3-fpm restart
 
 echo "-- Install and Start Laravel --"
