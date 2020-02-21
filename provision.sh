@@ -59,7 +59,7 @@ pecl install xdebug
 sudo echo "zend_extension=/usr/lib/php/20180731/xdebug.so" >> /etc/php/7.3/fpm/php.ini
 sudo echo "xdebug.remote_enable = 1" >> /etc/php/7.3/fpm/php.ini
 sudo echo "xdebug.remote_port = 9000" >> /etc/php/7.3/fpm/php.ini
-sudo echo "xdebug.remote_port = PHPSTORM" >> /etc/php/7.3/fpm/php.ini
+sudo echo "xdebug.idekey = PHPSTORM" >> /etc/php/7.3/fpm/php.ini
 sudo echo "xdebug.show_error_trace = 1" >> /etc/php/7.3/fpm/php.ini
 sudo echo "xdebug.remote_autostart = 0" >> /etc/php/7.3/fpm/php.ini
 sudo echo "xdebug.remote_connect_back = 1" >> /etc/php/7.3/fpm/php.ini
